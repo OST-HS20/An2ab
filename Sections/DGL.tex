@@ -1,0 +1,53 @@
+\section{Differential Gleichungen}
+Kurz \textbf{DGL}, beschreibt die Modellvar. $x$ und die Zielfunktionen $y$. Die \textbf{Ordnung} ist die max. Ableitungsordnung. Eine \textbf{Linear}-DGL beinhaltet alle $y;y';y'',...$ mit $\mathbb{R}$ Koeffizienten. Spezielle Lösungen spezifizieren alle Anfangswerte, hingegen eine Allgemeine Lösung enthält alle mögliche Lösungen.
+
+\subsection{Lösbarkeit - Picar-Lindelöf (PL)}
+DGL sind lösbar, wenn erstens $f(x;y;...;y^{n-1})$ stetig lokal und zweitens alle Partiellen Ableitungen $\frac{\delta f}{\delta y} = f_{y^{n-1}}$ beschränkt (keine Pollstellen) sind. Wenn eine der beiden Forderungen verletzt ist, dann ist \underline{keine Schlussfolgerung} möglich.
+
+\subsubsection{Singularitäts-Test}
+Wenn PL fehlschlägt, dann kann mit einem Singularitäts-Test eine mögliche Lösung gefunden werden.
+\todo{Beispiel: Di. 11.5.21}
+
+\subsection{Euler-Approximation}
+\todo{Fr. 14.5.21}
+
+\subsection{DGL-Lösungsverfahren}
+\subsubsection{Seperation}
+Ein Sonderfall für DGL 1. Ordnung ist die Seperation. Wenn $x$ und $y$ seperat auf einer Seite stehen können: $y' = \tilde{f}(x) \cdot g(y)$
+\todo{
+	Fr 14.5.21 \\
+	
+\begin{align*}
+	\frac{y'}{g(y)} &= \tilde{f}(x) \\
+	\int_{x_0}^{x}\frac{y'd\tilde{x}}{g(y)} &= \int_{x_0}^{x}\tilde{f}(\tilde{x})d\tilde{x} \\
+	\int_{y_0}^{y}\frac{1}{g(y)}d\tilde{y} &= \text{Integral lösen} \\
+	\ln\left|y\right| - \ln\left|y_0\right| &= \tilde{F}(x)\\
+	\left|\frac{y}{y_0}\right| &= e^{\tilde{F}(x)} \\
+	y &\Rightarrow \left\lbrace \begin{array}{r@{\quad}l}
+		y > 0; y_0 > 0 &: y = y_0 \cdot e^{\tilde{F}(x)} \\
+		y < 0; y_0 < 0 &: y = y_0 \cdot e^{\tilde{F}(x)}
+	\end{array} \right.
+\end{align*}
+}
+
+\subsection{Linearterm}
+$y'$ = Formel $f$ in $z = ax + by + c$.
+\[z' = a + bf(z)\]
+
+\subsection{Gleichgradigkeit}
+$y'$ = Formel $f$ nur abhängig von $z = \frac{y}{x}$. 
+\[
+z' = \frac{1}{x}(f(z) - z) \quad;z_0 = \frac{y_0}{x_0}\]
+
+\subsection{Linear DGL}
+Linearkombination:
+\[y = y_0\mathbb{e}^{-\int_{x_0}^{x}f(\tilde{x})d\tilde{x}}\]
+
+Charakteristisches Polynom der DGL-Gleichung ausrechnen:
+\[y'' + a_1y' + a_0y = f(x) \rightarrow \lambda^2 + a_1\lambda + a_0 = 0\]
+aus $\lambda_{1,2}$ Lösungen Berechnen, Determinante ergibt: 
+\begin{enumerate}
+	\item $D>0$: Starke Dämpfung
+	\item $d<0$: Schwache Dämpfung
+	\item $D=0$ aperiodischer Grenzfall
+\end{enumerate}
