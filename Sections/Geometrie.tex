@@ -1,53 +1,61 @@
 \section{Geometrie}
-\subsection{Kurvendarstellungen}
-Parameterdarstellung: $\vec{c}(t) = (x(t); y(t); ...) \qquad (t \in \text{Intervall})$\\
-Explizite = Funktionsdarstellung: $y = f(x)$\\
-Implizite Darstellung: $y - x = 0$ 
-
+\subsection{Kurvendarstellungen \bronstein{50}}
+\begin{tabular}{ l l }
+	Parameterdarstellung: & $\vec{c}(t) = \begin{pmatrix}
+		x(t) \\
+		y(t) \\
+		\vdots
+	\end{pmatrix} \quad (t \in \text{Intervall})$\\
+	Explizite: & $y = f(x)$\\
+	Implizite Darstellung: & $0 = y - x$    
+\end{tabular}
 
 \subsection{Umrechnung}
-\todo{$r = \sqrt{x^2 + y^2}$; $x = r\cos\phi$; $y = r\sin\phi$\\
-Vektoriell: $f'(x_0) = \frac{\dot y}{\dot x}$ \bronstein{}
-}
+$r, x, y$ in entsprechende Formel einsetzen und vereinfachen:\\
 
-\subsubsection{Differential}
-Bei der Umrechnung des Differentials kann folgende Logik übernommen werden: $dy = f'(x) \cdot dx$. ACHTUNG: Grenzen des Intervalls müssen ersetzt werden.
+\noindent Kart. $\rightarrow$ Polar: \\
+$r^2 = x^2 + y^2 \qquad x = r\cos\varphi \qquad y = r\sin\varphi$\\
 
-\subsection{Kurven zweiter Ordnung}
-Kreis: $x^2 + y^2 = r^2 \qquad (r \geq 0)$\\
-Ellipse: $\left(\frac{x - x_0}{a}\right)^2 + \left(\frac{y - y_0}{b}\right)^2 = r^2$\\
-Hyperbel: $\frac{(x - x_0)^2}{a^2} - \frac{(y - y_0)^2}{b^2} = 1$\\
-~\\
-Limacons/Herzkurve: $r = a(1 + \cos\phi)$
+\noindent Polar. $\rightarrow$ Kart: \\
+$x = r\cos\varphi \qquad y = r\sin\varphi$\\
 
-\subsection{Steigung und Tangentenberechnung}
-\subsubsection{Tangentengleichung}
-Spezialfall von Tayler-Polynom mit Entwicklungspunkt $a$:
-\[Tn_2(x, a) = \hat{f}(x) = f(a) + f'(a)\cdot(x - a)\]
-Die Normale (orthogonal am Entwicklungspunkt $a$); Steigung berechnen mit $f'(a) \cdot m_n = -1$ und $y = m_n \cdot x + b$ berechnen.
 
-\subsubsection{Steigung}
-\todo{\textbf{Implizit} $y' = \frac{b^2}{a^2}\cdot \frac{x}{y}$\\
-	\textbf{Vektor} $y' =$ \\
-	\textbf{Polar} $y' = \frac{r'\sin\phi + r\cos\phi}{r'\cos\phi - r\sin\phi}$}
+\noindent Polar. $\rightarrow$ Param: \\
+$\begin{pmatrix}
+	x(\varphi) \\ y(\varphi)
+\end{pmatrix} 
+=
+\begin{pmatrix}
+	r(\varphi)\cos(\varphi) \\ r(\varphi)\sin(\varphi)
+\end{pmatrix}$\\
+
+\subsection{Kurven zweiter Ordnung \bronstein{204ff}}
+\todo{Polar und Parameterdarstellung}
 
 \subsection{Formeln}
-\todo{
-	\label{bronstein:s60}
-	\bronstein{S60}\\
-	\includegraphics[width=\columnwidth]{Images/FoBronstein}
+\begin{center}
+	\rotatebox{90}{
+	\bgroup
+	\def\arraystretch{2.5}
+	\begin{tabular}[h]{l|c|c|c}
+		& \textbf{Kart.} & \textbf{Para.} & \textbf{Polar} \\
+		\toprule
+		Steigung & $f'(x)$ & $\frac{\dot y}{\dot x}$ & $\frac{r'\sin \varphi + r \cos\varphi}{r'\cos \varphi - r\sin\varphi} $ \\
+		\hline
+		Bogenlänge & $\int_{x_0}^{x_1}\sqrt{1 + f'(x)^2}dx$ & $\int_{t_0}^{t_1}\sqrt{\dot x + \dot y}dt$ & $\int_{\varphi_0}^{\varphi_1}\sqrt{r'^2 + r^2}d\varphi$ \\
+		\hline
+		Krümmung & $\frac{f''(x)}{\sqrt{1 + f'(x)^2}^3}$ & $\frac{\ddot y \dot x - \dot y \ddot x}{\sqrt{\dot x + \dot y}^3}$ & $\frac{2\dot r^2 - r \ddot r + r^2}{\sqrt{\dot r^2 + r^2}^3}$ \\
+		\hline
+		Fläche & $\int_{a}^{b}f(x)dx$ & $\frac{1}{2}\int_{t_0}^{t_1}[x(t)\dot y(t) - \dot x(t)y(t)]dt$ & $\frac{1}{2}\int_{\varphi_0}^{\varphi_1} r^2 d\varphi$\\
+		\hline
+		Volumen & $\pi \int_{a}^{b}f(x)^2dx$ & $\left|\pi \int_{t_0}^{t_1}y(t)^2\dot x(t)dt\right|$ & $\left|\pi \int_{\varphi_0}^{\varphi_1}r^2\sin^2\varphi \cdot (\dot r \cos\varphi - r\sin\varphi)d\varphi\right|$ \\
+		\hline
+		Oberfläche & $2\pi \int_{a}^{b}\left|f(x)\right|\cdot\sqrt{1 + f'(x)^2}dx$ & $\left|2\pi\int_{t_0}^{t_1}\left|y(t)\right|\cdot\sqrt{\dot x^2 + \dot y^2}dt\right|$ & $\left|2\pi \int_{\varphi_0}^{\varphi_1}\left|r\sin\varphi\right|\cdot\sqrt{r^2 + \cdot r^2}d\varphi\right|$
+	\end{tabular}
+	\egroup
 }
-\todo{Verweis nach Bronstein Trigo. Ablteiuntstabelle}
-
-\noindent Bogenlänge $l = \int\limits_{x_1}^{x_2}\sqrt{1 + f(x)^2}dx$\\
-\noindent Kurvenfläche $F = \frac{1}{2}\int\limits_{a}^{b}r^2(\phi)d\phi$
-\todo{Vektor/Polar. Siehe \ref{bronstein:s60}}
-\noindent Volumen $V_x=\pi\int f(x)^2dx$
-
-\noindent Oberfläche $O_x = 2\pi\int_{a}^{b}\left|f(x)\right|\sqrt{1 + f(x)^2}dx$
+\end{center}
 
 \subsubsection{Drehachse}
-\todo{Umkehrfunktionen und Grenzen anpassen! (Grenzen durch Umkehrfunktion herausfinden). Siehe \ref{bronstein:s60}}
-
-\subsection{Krümmungen}
-$K(x_0) = \frac{d\alpha}{ds} = \frac{f''(x_0)}{\sqrt{1 + f'(x)^2}^3}$
+Für Volumen Berechnungen ist es Zentral die Drehachse zu bestimmen. Mithilfe der Umkehrfunktion kann diese von $x$ nach $y$ gewechselt werden. ACHTUNG: Integralgrenzen müssen auch angepasst werden.
+\todo{Beispiel für Grenzen}

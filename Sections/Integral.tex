@@ -1,55 +1,62 @@
 \section{Integralrechnung}
-\todo{Intervalgrenzen tauschen $\rightarrow \cdot (-1)$}
-\todo{Achtung bei Integral mit Grenzwerte welche Pol stellen beinhaltet!}
+\subsection{Allgemein}
+Beim vertauschen der Integralgrenzen muss mit $\cdot (-1)$ Multipliziert werden. Viele Integrale in \bronstein{446}
 
 \subsection{Formeln}
 \noindent Integral Ableitung mit Funktion-Limits: \[\left(\int_{a(x)}^{b(x)}f(t)dt\right)' = f(b(x))b'(x) - f(a(x))a'(x)\]
 \noindent Integral Ungleichung:
 \[\left|\int_{a}^{b}f(x)dx\right| \leq \int_{a}^{b}\left|f(x)\right|dx\]
-\noindent RMS: 
-\[\frac{1}{b-a}\int_{a}^{b}f(x)dx\]
-
+\noindent Mittelwert:
+\[\text{linear:} \frac{1}{b-a}\int_{a}^{b}f(x)dx \qquad \text{quadratisch:} \sqrt{\frac{1}{b-a}\int_{a}^{b}f(x)^2dx}\]
 
 
 \subsection{Methoden}
-\[
-\int(c_1f(x) + c_2g(x))dx \eqi c_1 \int f(x)dx + c_2 g(x) dx
-\]
+\noindent\textbf{Potenzregel} evt Partialbruchzerlegung!
+\[ \int x^\alpha = \frac{x^{\alpha  + 1}}{\alpha + 1} + C \]
 
-\textbf{Potenzregel} evt Partialbruchzerlegung!
-\[
-\int x^\alpha = \frac{x^{\alpha  + 1}}{\alpha + 1} + C
-\]
-\[
-\int \frac{1}{x} = \ln\left|x\right| + C
-\]
+\noindent\textbf{Partielle Integration}
+\[\int f' \cdot g = f \cdot g - \int f \cdot g'\]
 
-\textbf{Produktregel}
-\[
-\int f' \cdot g = f \cdot g - \int f \cdot g'
-\]
+\noindent\textbf{Allgemeine Substitution}
+\[\int_{a}^{b} f(g(x)) \cdot g'(x)dx \eqi \int_{g(a)}^{g(b)} f(t) dt\]
+Wobei $t=g(x)$ und $dt = g'(x)dx$. Siehe \ref{differential}
 
-\textbf{Allgemeine Substitution}
-\todo{\[
-	\int f(x) dx \eqi \int f(g(t)) \cdot g'(t)dt
-	\]
-Wobei $x=g(t)$ und $dx = g'(t)dt$
-}
+\noindent\textbf{Elementar Substitution}
+\[\int f(ax + b)dx = \frac{1}{a}F(ax+b)+C\]
 
-\textbf{Elementarsubst.}
-\[
-\int f(ax + b)dx = \frac{1}{a}F(ax+b)+C
-\]
+\noindent\textbf{Exponential allg.}
+\[\int e^xdx = e^x + C\]
 
-\textbf{Universalsubst. Trigo}\\
-\todo{\includegraphics[width=0.7\linewidth]{Images/Trigo}}
+\noindent\textbf{Log-Integration}
+\[\int \frac{f'(x)}{f(x)} = \ln\left|f(x)\right| + C\]
 
+\noindent\textbf{Universalsubst. Trigo}\\
+  \bronstein{1101}
 
-\textbf{Potenzregel}\\
-\textbf{Spezialfall Potenzregel $\alpha = -1$}\\
-\textbf{Exponential allg.}\\
-\textbf{Log-Integration}
-\todo{woche 2}
+\subsection{Uneigentliche Integrale}
+Uneigentliches Integral heisst, dass entweder eine unbeschränkte Funktion integriert wird, oder eine Funktion über einen unbeschränkten Integrationsberech integriert wird. Zudem muss beim Integrieren über Polstellen immer mit Vorsicht gerechnet werden. Beispiel: 
+\todo{Beispiel aus ZF Kapitel 1.2 von GoogleDrive\\
+\[\int_{0}^{1}\frac{1}{\sqrt{1-x}}dx = \int_{0}^{1-\lambda}\dots dz \Rightarrow \lim\limits_{\lambda \rightarrow 0}\dots = +\infty\]}
 
-\subsection{Majorante/Minorante}
-\todo{Woche 3}
+\noindent Immer bis Polstelle integrieren, und mit $\lim\limits_{x\rightarrow c}$ Polstelle auswerten. Am Schluss Ergebnisse summieren.
+
+\subsubsection{Majorante/Minorante}
+\begin{center}
+	\begin{minipage}{0.2\textwidth}
+		\includegraphics[width=\linewidth]{Images/majorante}
+	\end{minipage}%%% to prevent a space
+	\begin{minipage}{0.25\textwidth}
+		\noindent Wenn \textbf{Majorante} Blau $g(x)$ Konvergiert, und Grün $f(x)$ in Blau eingeschlossen ist, dann muss Grün auch konvergieren.
+	\end{minipage}
+\end{center}
+\[\int g(x)dx \xrightarrow{\text{Konv.}} \int\left|f(x)\right| \xrightarrow{\text{Konv.}} \int f(x)dx \]
+
+\begin{center}
+	\begin{minipage}{0.2\textwidth}
+		\includegraphics[width=\linewidth]{Images/minorante}
+	\end{minipage}%%% to prevent a space
+	\begin{minipage}{0.25\textwidth}
+		\noindent Wenn \textbf{Minorante} Blau $g(x)$ Divergiert, und Grün $f(x)$ nicht kleiner als Blau wird, dann muss Grün auch divergieren.
+	\end{minipage}
+\end{center}
+
