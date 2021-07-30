@@ -1,10 +1,16 @@
 \section{Reihen}
-\todo{% TODO: \usepackage{graphicx} required
-	\includegraphics{Images/screenshot001}\\
-}
-
 \subsection{Reihen \bronstein{1077}}
-oder \bronstein{157} von Buch.
+\noindent Harmonische Reihe
+\[
+HR_n = \sum \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n} \approx \ln(n) + \gamma + \frac{1}{2n} \xRightarrow[]{n\rightarrow\infty}\infty
+\]
+
+\noindent Geometrische Reihe
+\[
+GR_n = \sum q^n = q^0 + q^1 + q^2 + \cdots + q^n = \frac{q^{n+1}-1}{q-1} \xRightarrow[]{n\rightarrow\infty}\frac{1}{1-q}
+\]
+
+\noindent Weitere Reihen:
 \begin{align*}
 	\sum_{k=1}^n k   &= \frac{n(n+1)}{2} &
 	\sum_{k=1}^n k^2 &= \frac{n(n+1)(2n+1)}{6} \\
@@ -13,10 +19,11 @@ oder \bronstein{157} von Buch.
 \end{align*}
 
 
+
 \subsection{Konvergenz/Divergenz}
 \subsubsection{Raffsumme}
-Summe von benachbarten Differenzen. Nur wenn letzter Summand $a_{n+1} \rightarrow 0$, dann konvergiert die Reihe.
-Falls $\alpha = \lim_{n \rightarrow \infty} \neq 0$, dann Divergenz. $\alpha=0$ funktioniert nicht!
+Summe von benachbarten Differenzen $a_{n+1} - a_n$. Nur wenn letzter Summand $a_{n+1} \rightarrow 0$, dann konvergiert die Reihe.
+Falls $a = \lim\limits_{n \rightarrow \infty} \neq 0$, dann Divergenz. $a=0$ funktioniert nicht!
 
 \subsubsection{Leibniz-Reihe}
 Konvergenz zeichnet sich durch folgende Eigenschaften aus:
@@ -30,18 +37,25 @@ Konvergenz zeichnet sich durch folgende Eigenschaften aus:
 \[\alpha = \lim\limits_{n \rightarrow \infty}{\sqrt[n]{\left|a_n\right|}}\qquad
 \left\lbrace
 \begin{array}{r@{}l}
-	\alpha < 1 &: \text{dann} \sum a_n \text{Konvergenz} \\
-	\alpha > 1 &: \text{dann} \sum a_n \text{Divergenz} \\
+	\alpha < 1 &: \text{dann } \sum a_n \text{ Konvergenz} \\
+	\alpha > 1 &: \text{dann } \sum a_n \text{ Divergenz} \\
 	\alpha = 1 &: \text{Keine Aussage} \\
 \end{array}\right. \]
 Falls keine Aussage getroffen werden kann, siehe auch Leibniz, Maj./Min. oder Quotientenkrit.
-\\ \\
-\noindent Hinweis:
-\todo{limit superium, Woche 9}
+\\
+\noindent\textbf{Beispiel}:
+\begin{align*}
+	a_n &= \frac{1}{3} + \frac{1}{5^2} + \frac{1}{3^3} + \frac{1}{5^4} + \cdots \\
+	\alpha &= \sqrt[n]{\left|a_n\right|} \xrightarrow{\text{Folge}} \frac{1}{3} + \frac{1}{5} + \frac{1}{3} + \frac{1}{5} + \cdots = \begin{cases}
+		\tfrac{1}{3} &: n \text{ ungerade} \\
+		\tfrac{1}{5} &: n \text{ gerade}
+	\end{cases}  
+\end{align*}
+Kein $\lim\limits_{n\rightarrow\infty}$, aber \textbf{grösste} Teilfolge von $\tilde{\alpha} = \limsup\limits_{n\rightarrow\infty}\sqrt[n]{\left|a_n\right|}$ ergibt $\tilde{\alpha} = \tfrac{1}{3} \rightarrow \text{ Konvergenz}$
 
 \subsubsection{D'Alembert Quotientenkriterium}
 \[\alpha = \lim\limits_{n \rightarrow \infty}{\frac{a_{n+1}}{a_n}}\]
-Siehe \verweiseref{W-Kriterium}, auch für Hinweis.
+Siehe \verweiseref{W-Kriterium}, für $\alpha$ Auswertung.
 
 \subsubsection{Integralkriterium}
 Wenn das Integral konvergiert, dann auch die Reihe:
@@ -54,12 +68,26 @@ Gilt nur wenn $f(x) \geq 0$ und $f$ fallend!
 \[\sum\left|a_n\right| < \infty\]
 
 \subsubsection{Reihenentwicklung}
-Weitere Referenzen in \bronstein{21.3}
-\[\sum_{n = 0}^{\infty}1x^n = \frac{1}{1-x}\]
-\todo{Fr. 20.4.21}
+Um eine Entwicklung einer Reihe von einer Funktion zu finden, am einfachsten eine ähnliche existierende Reihe suchen und anpassen: $f(x) \xrightarrow[\text{entwicklung}]{\text{Reihen-}} \sum a_n(x - x_0)^n$.
+
+\noindent Beispiel:
+\begin{align*}
+	f(x) &= \frac{2}{3+8x} &\xrightarrow{GM} \sum_{n=0}^{\infty}\frac{1}{1-q} \\
+	&= 3\cdot \frac{1}{3(1 + \tfrac{8}{3}x)} \eqi \frac{2}{3}\cdot \frac{1}{1 - \underbrace{(-\tfrac{8}{3}x)}_q} \\
+	&= \frac{2}{3}\sum_{n=0}^{\infty}\left(-\frac{8}{3}x\right)^n = \frac{2}{3}\sum_{n=0}^{\infty}(-1)^n \cdot \frac{8^n}{3^n}x^n
+\end{align*}
 
 \subsection{Fehlerabschätzung}
-\todo{Vorlesung - Reihe:$\left|s - s_n\right| \geq \left|a_{n+1}\right|$}
+Worst-Case Abschätzung für \textbf{Leibniz-Reihe} durch Auswertung der Summe $s$ und Reihe $a$. Für andere Reihen zB Maj/Min verwenden:
+\[\left|s - s_n\right| \leq \left|a_{n+1}\right|\]
+
+\noindent \textbf{Beispiel} $\sum_{k=1}^{\infty}(-1)^k\frac{1}{k!} = -0.6321$, Abschätzung nach $n=4$ Durchgängen:
+\begin{align*}
+	\left|s - s_4\right| &\leq \left|a_5\right| \\
+	s_4 &= -\frac{1}{1!} + \frac{1}{2!} -\frac{1}{3!} + \frac{1}{4!} = -0.625 \\
+	\left|a_5\right| &= \left|(-1)^5\frac{1}{5!}\right| = 0.0083	
+\end{align*}
+Fehler nach 4 Durchgängen ist noch höchstens $\tfrac{1}{120}$.
 
 \subsection{Konvergenzradius}
 \todo{\[\left|x - x_0\right| < \frac{1}{\lim\limits_{n \rightarrow \infty}\sqrt[n]{\left|a_n\right|}}\]}

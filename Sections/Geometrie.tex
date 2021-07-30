@@ -30,7 +30,11 @@ $\begin{pmatrix}
 \end{pmatrix}$\\
 
 \subsection{Kurven zweiter Ordnung \bronstein{204ff}}
-\todo{Polar und Parameterdarstellung}
+\textbf{\href{https://www.youtube.com/watch?v=ZOOu9HqDFx0}{Hinweis:}} Bei Ableitungen nach zB $\dot{x}$, sind $y(x)$ immer auch von $x$ abhängig und müssen daher mit der inneren Ableitung multipliziert werden. 
+\begin{align*}
+	3x^2 + 2y^2 &= x + 4y \qquad \left| \cdot \frac{d(...)}{dx}\right. \\
+	6x + 4y\dot{y} &= 1 + 4\dot{y}
+\end{align*}
 
 \subsection{Formeln}
 \begin{center}
@@ -42,20 +46,21 @@ $\begin{pmatrix}
 		\toprule
 		Steigung & $f'(x)$ & $\frac{\dot y}{\dot x}$ & $\frac{r'\sin \varphi + r \cos\varphi}{r'\cos \varphi - r\sin\varphi} $ \\
 		\hline
-		Bogenlänge & $\int_{x_0}^{x_1}\sqrt{1 + f'(x)^2}dx$ & $\int_{t_0}^{t_1}\sqrt{\dot x + \dot y}dt$ & $\int_{\varphi_0}^{\varphi_1}\sqrt{r'^2 + r^2}d\varphi$ \\
+		Bogenlänge & $\int_{x_0}^{x_1}\sqrt{1 + f'(x)^2}dx$ & $\int_{t_0}^{t_1}\sqrt{\dot x^2 + \dot y^2}dt$ & $\int_{\varphi_0}^{\varphi_1}\sqrt{r'^2 + r^2}d\varphi$ \\
 		\hline
-		Krümmung & $\frac{f''(x)}{\sqrt{1 + f'(x)^2}^3}$ & $\frac{\ddot y \dot x - \dot y \ddot x}{\sqrt{\dot x + \dot y}^3}$ & $\frac{2\dot r^2 - r \ddot r + r^2}{\sqrt{\dot r^2 + r^2}^3}$ \\
+		Krümmung & $\frac{f''(x)}{\sqrt{1 + f'(x)^2}^3}$ & $\frac{\ddot y \dot x - \dot y \ddot x}{\sqrt{\dot x^2 + \dot y^2}^3}$ & $\frac{2\dot r^2 - r \ddot r + r^2}{\sqrt{\dot r^2 + r^2}^3}$ \\
 		\hline
-		Fläche & $\int_{a}^{b}f(x)dx$ & $\frac{1}{2}\int_{t_0}^{t_1}[x(t)\dot y(t) - \dot x(t)y(t)]dt$ & $\frac{1}{2}\int_{\varphi_0}^{\varphi_1} r^2 d\varphi$\\
+		Fläche & $\int_{a}^{b}f(x)dx$ & $\frac{1}{2}\int_{t_0}^{t_1}[x\dot y - \dot xy]dt$ & $\frac{1}{2}\int_{\varphi_0}^{\varphi_1} r^2 d\varphi$\\
 		\hline
-		Volumen & $\pi \int_{a}^{b}f(x)^2dx$ & $\left|\pi \int_{t_0}^{t_1}y(t)^2\dot x(t)dt\right|$ & $\left|\pi \int_{\varphi_0}^{\varphi_1}r^2\sin^2\varphi \cdot (\dot r \cos\varphi - r\sin\varphi)d\varphi\right|$ \\
+		Volumen um $\vec{x}^*$ & $\pi \int_{a}^{b}f(x)^2dx$ & $\left|\pi \int_{t_0}^{t_1}y^2 \cdot \dot xdt\right|$ & $\left|\pi \int_{\varphi_0}^{\varphi_1}r^2\sin^2\varphi \cdot (\dot r \cos\varphi - r\sin\varphi)d\varphi\right|$ \\
 		\hline
-		Oberfläche & $2\pi \int_{a}^{b}\left|f(x)\right|\cdot\sqrt{1 + f'(x)^2}dx$ & $\left|2\pi\int_{t_0}^{t_1}\left|y(t)\right|\cdot\sqrt{\dot x^2 + \dot y^2}dt\right|$ & $\left|2\pi \int_{\varphi_0}^{\varphi_1}\left|r\sin\varphi\right|\cdot\sqrt{r^2 + \cdot r^2}d\varphi\right|$
+		Oberfläche um $\vec{x}^*$ & $2\pi \int_{a}^{b}\left|f(x)\right|\cdot\sqrt{1 + f'(x)^2}dx$ & $\left|2\pi\int_{t_0}^{t_1}\left|y\right|\cdot\sqrt{\dot x^2 + \dot y^2}dt\right|$ & $\left|2\pi \int_{\varphi_0}^{\varphi_1}\left|r\sin\varphi\right|\cdot\sqrt{r^2 + \cdot r^2}d\varphi\right|$
 	\end{tabular}
 	\egroup
 }
 \end{center}
-
-\subsubsection{Drehachse}
-Für Volumen Berechnungen ist es Zentral die Drehachse zu bestimmen. Mithilfe der Umkehrfunktion kann diese von $x$ nach $y$ gewechselt werden. ACHTUNG: Integralgrenzen müssen auch angepasst werden.
-\todo{Beispiel für Grenzen}
+\noindent $^*$) Für Rotation um $\vec{y}$ können in Para. die Funktionen $y$ durch $x$ ersetzt werden. Für Kart. kann die Umkehrfunktion $f^{-1}(x)$ verwendet werden.\\\textbf{Achtung}: Integral Grenzen müssen in Kart. auch angepasst sein:
+\begin{align*}
+	f(x) = \frac{1}{3}x^2 &\xRightarrow[]{x \leftrightarrow y} f^{-1}(y) = \sqrt{3y} \\
+	\int_{a}^{b} (\cdots) dx  &\xRightarrow[]{} \int_{f^{-1}(a)}^{f^{-1}(b)} (\cdots) dy
+\end{align*}
