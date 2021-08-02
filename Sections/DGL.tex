@@ -1,53 +1,102 @@
 \section{Differential Gleichungen}
-Kurz \textbf{DGL}, beschreibt die Modellvar. $x$ und die Zielfunktionen $y$. Die \textbf{Ordnung} ist die max. Ableitungsordnung. Eine \textbf{Linear}-DGL beinhaltet alle $y;y';y'',...$ mit $\mathbb{R}$ Koeffizienten. Spezielle Lösungen spezifizieren alle Anfangswerte, hingegen eine Allgemeine Lösung enthält alle mögliche Lösungen.
+Kurz \textbf{DGL}, beschreibt die Modellvar. $x$ und die Zielfunktionen $y$.
 
-\subsection{Lösbarkeit - Picar-Lindelöf (PL)}
-DGL sind lösbar, wenn erstens $f(x;y;...;y^{n-1})$ stetig lokal und zweitens alle Partiellen Ableitungen $\frac{\delta f}{\delta y} = f_{y^{n-1}}$ beschränkt (keine Pollstellen) sind. Wenn eine der beiden Forderungen verletzt ist, dann ist \underline{keine Schlussfolgerung} möglich.
+\subsection{Eigenschaften}
+\[
+b\cdot y''' + a(x) \cdot y'' + 0 \cdot y' = g(x)
+\]
+Die \textbf{Ordnung} ist die max. Ableitungsordnung $\to 3$ \\
+Eine \textbf{Linear}-DGL beinhaltet alle $y;y';y'',...$ (Koeffizienten $\mathbb{R}$ können auch abhängig von $x$ sein $\to b \text{ und } a(x)$) mit $y^{(i)}$ \underline{Exponent $=1$}. $\to $ Linear \\
+\textbf{Homogen} sind jene DGLs, welche Störfunktion $g(f) = 0$ haben. Andernfalls \textbf{Inhomogen}.
+
+
+\subsection{DGL Analyse}
+Mit \textbf{ABC-Analyse} überprüft, ob alle Lösungen von DGL gefunden wurden.\underline{ r.h.s} ist aufgelöst nach höchster Ordnung.\\
+
+\noindent\textbf{Beispiel}:
+$\underbrace{y'' = \overbrace{y}^\text{r.h.s.}}_\text{DGL} \qquad	\underbrace{y = a\sinh x + b\cosh x}_\text{Lösung}$\\
+\textbf{A} Verifikation: Lösung in DGL einsetzen und überprüfen.
+\begin{align*}
+	y' &= a\cosh x + b\sinh x \\
+	y'' &= a\sinh x + b\cosh x \textcolor{green}{ \eqi y}
+\end{align*}
+\textbf{B} Alle Anfangsbedingungen lösbar. Anfangswerte einsetzten und Determinate darf nicht $0$ sein: 
+\begin{align*}
+	\begin{pmatrix}
+	y_0 = a\cosh x_0 + b\sinh x_0 \\
+	y_1 = a\cosh x_0 + b\sinh x_0
+	\end{pmatrix}
+	\rightarrow
+	\det\begin{pmatrix}
+		\sinh x_0 & \cosh x_0 \\
+		\cosh x_0 & \sinh x_0
+	\end{pmatrix} = \textcolor{green}{ -1}
+\end{align*}
+\textbf{C} Eindeutigkeit (PL - Siehe Kapitel \ref{picarlindelöf}): \label{picarlindelöf_beispiel}
+\begin{align*}
+	1. &\qquad f = y \to \text{Stetig} \\
+	2. &\qquad f_y = \frac{\delta f}{\delta y} = 1 ;\quad  f'_y = \frac{\delta^2 f}{\delta^2 y} = 0 \to \text{Keine Pollstellen}\\
+	&\textcolor{green}{ \text{1. und 2. korrekt} \to PL}
+\end{align*}
+
+\subsection{Lösbarkeit - Picar-Lindelöf (PL)}\label{picarlindelöf}
+DGL sind lösbar, wenn erstens r.h.s $f(x;y;...;y^{n-1})$ stetig lokal sind, dafür werden Anfangswerte in r.h.s eingesetzt. Zudem müssen zweitens alle Partiellen Ableitungen $\frac{\delta f}{\delta y} = f_{y^{(n-1)}}$ beschränkt (keine Pollstellen) sein, auch hier Anfangswerte einsetzen. Wenn eine der beiden Forderungen verletzt ist, dann ist \underline{keine Schlussfolgerung} möglich. Siehe \ref{picarlindelöf_beispiel} als Beispiel.
 
 \subsubsection{Singularitäts-Test}
-Wenn PL fehlschlägt, dann kann mit einem Singularitäts-Test eine mögliche Lösung gefunden werden.
-\todo{Beispiel: Di. 11.5.21}
+Wenn PL fehlschlägt, dann kann mit einem Singularitäts-Test eine mögliche Lösung gefunden werden. Dafür wird eine Funktion gesucht, welche r.h.s singulär werden lässt und diese wird in DGL eingesetzt.
+\noindent\textbf{Beispiel:}
+\begin{align*}
+	y' &= -\frac{x}{2} + \sqrt{\frac{x^2}{4} + y} &\qquad y(2) = -1 \\
+	f_y &= \frac{\delta f}{\delta y} = 0 + \frac{1}{2\sqrt{\frac{x^2}{4} + y}} \cdot 1  &\to \text{Pollstelle} \\
+	\frac{x^2}{4} + y &= 0 \Rightarrow y = -\frac{x^2}{4} &\Rightarrow y' = -\frac{2x}{4} \textcolor{green}{\eqq} -\frac{x}{2} + \sqrt{0}
+\end{align*}
 
-\subsection{Euler-Approximation}
-\todo{Fr. 14.5.21}
 
 \subsection{DGL-Lösungsverfahren}
 \subsubsection{Seperation}
-Ein Sonderfall für DGL 1. Ordnung ist die Seperation. Wenn $x$ und $y$ seperat auf einer Seite stehen können: $y' = \tilde{f}(x) \cdot g(y)$
-\todo{
-	Fr 14.5.21 \\
-	
-\begin{align*}
-	\frac{y'}{g(y)} &= \tilde{f}(x) \\
-	\int_{x_0}^{x}\frac{y'd\tilde{x}}{g(y)} &= \int_{x_0}^{x}\tilde{f}(\tilde{x})d\tilde{x} \\
-	\int_{y_0}^{y}\frac{1}{g(y)}d\tilde{y} &= \text{Integral lösen} \\
-	\ln\left|y\right| - \ln\left|y_0\right| &= \tilde{F}(x)\\
-	\left|\frac{y}{y_0}\right| &= e^{\tilde{F}(x)} \\
-	y &\Rightarrow \left\lbrace \begin{array}{r@{\quad}l}
-		y > 0; y_0 > 0 &: y = y_0 \cdot e^{\tilde{F}(x)} \\
-		y < 0; y_0 < 0 &: y = y_0 \cdot e^{\tilde{F}(x)}
-	\end{array} \right.
-\end{align*}
-}
+Ein Sonderfall für DGL 1. Ordnung ist die \underline{Seperation}. Wenn $x$ und $y$ seperiert auf einer Seite stehen können: $y' = g(x)\cdot y $ ($x$ durch Multiplikation von $y$ getrennt), dann kann mittels $\frac{y'}{y}$ und ein $\int_{x_0}^{x_1}dx$ die Funktion $y$ gefunden werden.
 
-\subsection{Linearterm}
+\subsubsection{Linearterm}
 $y'$ = Formel $f$ in $z = ax + by + c$.
-\[z' = a + bf(z)\]
+	\[z' = a + bf(z)\]
 
-\subsection{Gleichgradigkeit}
+
+\subsubsection{Gleichgradigkeit}
 $y'$ = Formel $f$ nur abhängig von $z = \frac{y}{x}$. 
 \[
 z' = \frac{1}{x}(f(z) - z) \quad;z_0 = \frac{y_0}{x_0}\]
 
-\subsection{Linear DGL}
-Linearkombination:
-\[y = y_0\mathbb{e}^{-\int_{x_0}^{x}f(\tilde{x})d\tilde{x}}\]
 
-Charakteristisches Polynom der DGL-Gleichung ausrechnen:
-\[y'' + a_1y' + a_0y = f(x) \rightarrow \lambda^2 + a_1\lambda + a_0 = 0\]
-aus $\lambda_{1,2}$ Lösungen Berechnen, Determinante ergibt: 
-\begin{enumerate}
-	\item $D>0$: Starke Dämpfung
-	\item $d<0$: Schwache Dämpfung
-	\item $D=0$ aperiodischer Grenzfall
+\subsubsection{Linear DGL}
+Um lineare DGL zu berechnen kann das charakteristische Polynom verwendet werden:
+\[
+\cdots + y'' + a_1y' + a_0y = f(x) \quad\rightarrow\quad \cdots + \lambda^2 + a_1\lambda + a_0 = 0
+\]
+aus $\lambda_{1,2}$ können die $\mathbb{H}$-Lösungen berechnet werden. Mittels Determinate: 
+\begin{enumerate}[nosep]
+	\item $D>0$: Starke Dämpfung\\$\mathbb{H} \eqi \left\{Ae^{\lambda_1x}+Be^{\lambda_2x} + \cdots \right\}_{A,B \in \mathbb{R}}$
+	\item $D<0$: Schwache Dämpfung. Dabei gilt $\alpha = \Im(\lambda_{1,2 }) $ und \\ $\mathbb{H} \eqi \left\{Ae^{-\frac{a_1}{2}x}\cos(\alpha x)+Be^{-\frac{a_1}{2}x}\sin(\alpha x) + \cdots \right\}_{A,B \in \mathbb{R}}$
+	\item $D=0$ aperiodischer Grenzfall\\$\mathbb{H} \eqi \left\{Ae^{\lambda_1x}+Be^{\lambda_1x}  + \cdots \right\}_{A,B \in \mathbb{R}}$
 \end{enumerate}
+
+\noindent Anschliessend können die $\mathbb{P}$-Lösungen mittels \textbf{Faltungsintegral} berechnet werden:
+\[
+y_p(x) = \int_{x_0}^{x}g(x + x_0 - t)\cdot\underbrace{f(t)}_\text{Störterm}dt
+\]
+\noindent Die Funktion $g\in\mathbb{H}$ mit Standartvektor "binär" $1 \to (0;0;\cdots;1)$. Konkret wird die $\mathbb{H}$-Lösung verwendet und mittels Anfangswerte $A,B,...$ berechnet und somit eine konkrete Funktion $g$ gefunden.\\
+
+\noindent Als Alternative für die $\mathbb{P}$-Lösung kann 
+
+\noindent\textbf{Beispiel:} Ordnung=$2: \qquad \Rightarrow g(0) \eqi 0 \quad g'(0) \eqi 1$\\
+
+\noindent Die DGL Lösung ist immer eine Summe von $\mathbb{L} = \mathbb{H} + \mathbb{P}$
+\subsection{Orthogonaltrajektorien}
+Senkrechte Kurven, welche Originalkurven immer senkrecht schneiden. \\ 
+(1) Ableiten und Parameter eliminieren, DGL als r.h.s notieren (2) Orthogonale Kurven mit Negative Reziprok definieren.\\
+\noindent\textbf{Beispiel}:
+\begin{align*}
+	\text{(1) } y &= cx & | \cdot \frac{d}{dx}\quad | c=\cdots\\
+	y' &= c \quad c = \frac{y}{x} \Rightarrow y' = \frac{y}{x}\\
+	\text{(2) } \tilde{y}' &= -\frac{x}{y}
+\end{align*}
+

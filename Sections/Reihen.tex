@@ -10,15 +10,13 @@ HR_n = \sum \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n} \a
 GR_n = \sum q^n = q^0 + q^1 + q^2 + \cdots + q^n = \frac{q^{n+1}-1}{q-1} \xRightarrow[]{n\rightarrow\infty}\frac{1}{1-q}
 \]
 
-\noindent Weitere Reihen:
-\begin{align*}
-	\sum_{k=1}^n k   &= \frac{n(n+1)}{2} &
-	\sum_{k=1}^n k^2 &= \frac{n(n+1)(2n+1)}{6} \\
-	\sum_{k=1}^n k^3 &= \frac{n^2(n+1)^2}{4} &
-	\sum_{k=0}^{n-1} ar^k &= a\left(\frac{1-r^n}{1-r}\right) (r \neq 1)
-\end{align*}
-
-
+\noindent Potenz Reihe\label{potenzreihe}
+\[
+PR_n = \sum\limits_{n=0}^{\infty} a_n(x -x_0)^n \qquad \begin{array}{ll}
+	 x_0: \text{ Entwicklungsstelle} \\
+	 a_n: \text{ Koeffizienten}
+\end{array}
+\]
 
 \subsection{Konvergenz/Divergenz}
 \subsubsection{Raffsumme}
@@ -79,7 +77,7 @@ Um eine Entwicklung einer Reihe von einer Funktion zu finden, am einfachsten ein
 
 \subsection{Fehlerabschätzung}
 Worst-Case Abschätzung für \textbf{Leibniz-Reihe} durch Auswertung der Summe $s$ und Reihe $a$. Für andere Reihen zB Maj/Min verwenden:
-\[\left|s - s_n\right| \leq \left|a_{n+1}\right|\]
+\[\left|s - s_n\right| = \left|\sum_{k=n+1}^{\infty}s_n\right| \leq \left|a_{n+1}\right|\]
 
 \noindent \textbf{Beispiel} $\sum_{k=1}^{\infty}(-1)^k\frac{1}{k!} = -0.6321$, Abschätzung nach $n=4$ Durchgängen:
 \begin{align*}
@@ -90,13 +88,31 @@ Worst-Case Abschätzung für \textbf{Leibniz-Reihe} durch Auswertung der Summe $
 Fehler nach 4 Durchgängen ist noch höchstens $\tfrac{1}{120}$.
 
 \subsection{Konvergenzradius}
-\todo{\[\left|x - x_0\right| < \frac{1}{\lim\limits_{n \rightarrow \infty}\sqrt[n]{\left|a_n\right|}}\]}
+Bestimmt den Bereich von Entwicklungsstelle $x_0$ mit den \textbf{Koeffizienten} $a_n$ (Ohne $x^n$ Teil!) welcher Konvergiert (Siehe $PR_n$ Kapitel \ref{potenzreihe} oder Taylor-Koeffizient $a_n = \frac{f^{(n)}(x_0)}{n!}$ für die $x^n$-te Zahl). Für Konvergenz muss der Abstand $\left|x - x_0\right| < r$ sein, wenn $\left|x - x_0\right| > r$ dann Divergenz. Falls gleich, ist keine Aussage möglich. 
+\[
+\underbrace{\left|x - x_0\right|}_{\text{Abstand}} < \underbrace{\frac{1}{\lim\limits_{n \rightarrow \infty}\sqrt[n]{\left|a_n\right|}} \text{ -oder- } \frac{1}{\lim\limits_{n \rightarrow \infty}{\left|\frac{a_{n+1}}{a_n}\right|}}}_{\text{Radius } r}
+\]
+
+\noindent\textbf{Hinweis:} Quotientenkriterium kann nur verwendet werden, wenn $a_n$ konvergieren.
 
 \subsubsection{Konvergenzgeschwindigkeit}
-\todo{Woche 10}
+Je kleiner der Radius $\left|x - x_0\right|$ ist, desto schneller ist die Konvergenz. \\
+\noindent\textbf{Beispiel}:
+\[
+\ln(1+x) = \sum_{k=1}^{n}\frac{(-1)^{k-1}}{k} x^k + R_n
+\]
+\noindent Konkret $x=1$, $x_0 = 0$ und $n=5$ bedeutet: $\to \left|1 - 0\right| = \underbrace{1}_{\text{Radius}}$. Wenn nun $x = -\frac{1}{2}$, dann $\ln(1 + 1) = \ln(2) \eqi -\ln(\frac{1}{2})$ und Konvergenz ist viel schneller!
+
 
 \subsubsection{Ableitung/Integrieren}
-Ableitung:\[\sum_{n=i}^{\infty}n(n-1)\dots(n-i+1)a_nx^{n-i}=f^{(i)}(x)\]
+Beim Ableiten/Integrieren bleibt der Konvergenzradius erhalten! 
+
+Die $i$-te Ableitung: 
+\begin{align*}
+	 f(x)  &= \sum_{n=0}^{\infty}a_nx^n\\
+	f^{(i)}(x) &= \sum_{n=i}^{\infty}n(n-1)\cdot_{\dots}\cdot(n-i+1)a_nx^{n-i}
+\end{align*}
+\noindent\textbf{Achtung}: Startindex muss angepasst werden! \\
+
 Integration: \[\sum_{n=0}^{\infty}a_n\frac{x^{n+1}}{n+1}=\int f(x)dx+C\]
 Hinweis: Für $C$, Konv.Radius-Zentrum $x_0$ einsetzen.
-\todo{DI 4.5.21}
