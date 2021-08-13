@@ -1,6 +1,4 @@
 \section{Differential Gleichungen}
-Kurz \textbf{DGL}, beschreibt die Modellvar. $x$ und die Zielfunktionen $y$.
-
 \subsection{Eigenschaften}
 \[
 b\cdot y''' + a(x) \cdot y'' + 0 \cdot y' = g(x)
@@ -34,13 +32,13 @@ $\underbrace{y'' = \overbrace{y}^\text{r.h.s.}}_\text{DGL} \qquad	\underbrace{y 
 \end{align*}
 \textbf{C} Eindeutigkeit (PL - Siehe Kapitel \ref{picarlindelöf}): \label{picarlindelöf_beispiel}
 \begin{align*}
-	1. &\qquad f = y \to \text{Stetig} \\
+	1. &\qquad f = y \to \text{Stetig in } \mathbb{D} \\
 	2. &\qquad f_y = \frac{\delta f}{\delta y} = 1 ;\quad  f'_y = \frac{\delta^2 f}{\delta^2 y} = 0 \to \text{Keine Pollstellen}\\
 	&\textcolor{green}{ \text{1. und 2. korrekt} \to PL}
 \end{align*}
 
 \subsection{Lösbarkeit - Picar-Lindelöf (PL)}\label{picarlindelöf}
-DGL sind lösbar, wenn erstens r.h.s $f(x;y;...;y^{n-1})$ stetig lokal sind, dafür werden Anfangswerte in r.h.s eingesetzt. Zudem müssen zweitens alle Partiellen Ableitungen $\frac{\delta f}{\delta y} = f_{y^{(n-1)}}$ beschränkt (keine Pollstellen) sein, auch hier Anfangswerte einsetzen. Wenn eine der beiden Forderungen verletzt ist, dann ist \underline{keine Schlussfolgerung} möglich. Siehe \ref{picarlindelöf_beispiel} als Beispiel.
+DGL sind \underline{eindeutig lösbar}, wenn erstens r.h.s $f(x;y;...;y^{n-1})$ stetig lokal sind, dafür werden Anfangswerte in r.h.s eingesetzt. Zudem müssen zweitens alle Partiellen Ableitungen $\frac{\delta f}{\delta y} = f_{y^{(n-1)}}$ beschränkt (keine Pollstellen) sein, auch hier Anfangswerte einsetzen. Wenn eine der beiden Forderungen verletzt ist, dann ist \underline{keine Schlussfolgerung} möglich. Siehe \ref{picarlindelöf_beispiel} als Beispiel.
 
 \subsubsection{Singularitäts-Test}
 Wenn PL fehlschlägt, dann kann mit einem Singularitäts-Test eine mögliche Lösung gefunden werden. Dafür wird eine Funktion gesucht, welche r.h.s singulär werden lässt und diese wird in DGL eingesetzt.
@@ -57,46 +55,75 @@ Wenn PL fehlschlägt, dann kann mit einem Singularitäts-Test eine mögliche Lö
 Ein Sonderfall für DGL 1. Ordnung ist die \underline{Seperation}. Wenn $x$ und $y$ seperiert auf einer Seite stehen können: $y' = g(x)\cdot y $ ($x$ durch Multiplikation von $y$ getrennt), dann kann mittels $\frac{y'}{y}$ und ein $\int_{x_0}^{x_1}dx$ die Funktion $y$ gefunden werden.
 
 \subsubsection{Linearterm}
-$y'$ = Formel $f$ in $z = ax + by + c$.
-	\[z' = a + bf(z)\]
+Ein Sonderfall für DGL 1. Ordnung: $y' = f(ax +bx+c)$ Substituieren $z := ax + bx +c$ und mit $z' = a + bf(z)$ ergänzen. Anschliessend: \[
+\int_{x_0}^{x}\frac{z'}{a+bf(z)}d\tilde{x} = \int_{x_0}^{x}1d\tilde{x} \Rightarrow \int_{z_0}^{z}\frac{1}{a +bf(\tilde{z})}d\tilde{z} = \int_{x_0}^{x}1d\tilde{x}
+\] 
 
 
 \subsubsection{Gleichgradigkeit}
-$y'$ = Formel $f$ nur abhängig von $z = \frac{y}{x}$. 
-\[
-z' = \frac{1}{x}(f(z) - z) \quad;z_0 = \frac{y_0}{x_0}\]
+Ein Sonderfall für DGL 1. Ordnung: $y' = f(\frac{y}{x})$ Substituieren $z := \frac{y}{x}$ und mit $z' = \frac{1}{x}(y(z) - z)\qquad z_0 = \frac{y_0}{x_0}$ ergänzt.\\
+\textbf{Beispiel} 
+\begin{align*}
+	y' &= 2 \cdot \frac{y}{x} + 1 \xRightarrow{z := \frac{y}{x}} y' = 2z + 1 & 	z' &= \frac{2z + 1 - z}{x}  \\
+	\int \frac{1}{z+1}dz &= \int \frac{1}{x}dx & | \int \dots \\
+	z &= Kx - 1 \xRightarrow{\frac{y}{x} := z} y = Kx^2 - x
+\end{align*}
 
-
-\subsubsection{Linear DGL}
-Um lineare DGL zu berechnen kann das charakteristische Polynom verwendet werden:
+\subsubsection{Linear DGL n. Ordnung}
+Um lineare DGL mit Konstanten Koeffizienten zu berechnen, kann das charakteristische Polynom verwendet werden:
 \[
 \cdots + y'' + a_1y' + a_0y = f(x) \quad\rightarrow\quad \cdots + \lambda^2 + a_1\lambda + a_0 = 0
 \]
-aus $\lambda_{1,2}$ können die $\mathbb{H}$-Lösungen berechnet werden. Mittels Determinate: 
+aus $\lambda_i$ können die $\mathbb{H}$-Lösungen berechnet werden. Dabei gilt pro $\lambda$:
 \begin{enumerate}[nosep]
-	\item $D>0$: Starke Dämpfung\\$\mathbb{H} \eqi \left\{Ae^{\lambda_1x}+Be^{\lambda_2x} + \cdots \right\}_{A,B \in \mathbb{R}}$
-	\item $D<0$: Schwache Dämpfung. Dabei gilt $\alpha = \Im(\lambda_{1,2 }) $ und \\ $\mathbb{H} \eqi \left\{Ae^{-\frac{a_1}{2}x}\cos(\alpha x)+Be^{-\frac{a_1}{2}x}\sin(\alpha x) + \cdots \right\}_{A,B \in \mathbb{R}}$
-	\item $D=0$ aperiodischer Grenzfall\\$\mathbb{H} \eqi \left\{Ae^{\lambda_1x}+Be^{\lambda_1x}  + \cdots \right\}_{A,B \in \mathbb{R}}$
+	\item $\lambda \in \mathbb{R}$, Vielfachheit $r$ = Anzahl gleicher $\lambda$:\\
+	$\mathbb{H}_i = x^{r-1} \cdot e^{\lambda_i x}$
+	\item $\lambda \in \mathbb{C}\backslash\mathbb{R}$ , Vielfachheit $k$ = Anzahl gleicher $\lambda$ (Nur \textbf{positiver} Imaginärteil verwenden: $\lambda = \alpha + j\beta$):\\
+	$\mathbb{H}_i = x^{k-1} \cdot e^{\alpha x}\cdot \cos(\beta x)$\\
+	$\mathbb{H}_{i+1} = x^{k-1} \cdot e^{\alpha x}\cdot \sin(\beta x)$  \\
 \end{enumerate}
 
-\noindent Anschliessend können die $\mathbb{P}$-Lösungen mittels \textbf{Faltungsintegral} berechnet werden:
+\noindent Die $\mathbb{H}$-Lösungen ist nun die lineare Kombination von allen $\mathbb{H}_i$.\\
+\textbf{Beispiel: Ordnung $n=3$}
+\begin{align*}
+	1\lambda^4 + 2\lambda^2 + 1 = 0 &\qquad\Rightarrow \mathbb{L} = \left\{+j;+j;\xcancel{-j};\xcancel{-j}\right\} (\smalloverbrace{0}^\alpha + j\smalloverbrace{1}^\beta) \\
+	\xRightarrow[]{} \lambda \in \mathbb{C}; k=2 &\qquad \mathbb{H}_1 = 1 e^{0x}\cos(1x); \quad \mathbb{H}_2 = 1xe^{0x}\cos(1x) \\
+		                                         &\qquad \mathbb{H}_3 = 1 e^{0x}\sin(1x); \quad \mathbb{H}_4 = 1xe^{0x}\sin(1x) \\
+	\mathbb{L}_\mathbb{H} &= \left\{A\mathbb{H}_1 + B\mathbb{H}_2+ C\mathbb{H}_3+ D\mathbb{H}_4 \right\}_{A,B,C,D\in\mathbb{R}}
+\end{align*}
+
+\noindent Anschliessend können die $\mathbb{P}$-Lösungen mittels \textbf{Faltungsintegral} berechnet werden (wenn möglich $x_0 = 0$) verwenden:
 \[
 y_p(x) = \int_{x_0}^{x}g(x + x_0 - t)\cdot\underbrace{f(t)}_\text{Störterm}dt
 \]
-\noindent Die Funktion $g\in\mathbb{H}$ mit Standartvektor "binär" $1 \to (0;0;\cdots;1)$. Konkret wird die $\mathbb{H}$-Lösung verwendet und mittels Anfangswerte $A,B,...$ berechnet und somit eine konkrete Funktion $g$ gefunden.\\
+\noindent Die Funktion $g(x_0)\in\mathbb{H}$ mit GLS $\left(\begin{smallmatrix}	g(x_0)\\ g^{(n-1)}(x_0)\\ g^{(n)}(x_0) \end{smallmatrix}\right) \eqi \underbrace{\left(\begin{smallmatrix}	0\\ 0\\ 1 \end{smallmatrix}\right)}_\text{{Binär } 1}$ oder entsprechenden Startvektor bestimmen. Konkret wird die $\mathbb{H}$-Lösung verwendet und mittels Anfangswerte, $A,B,...$ berechnet und somit eine konkrete Funktion $g$ gefunden.\\
 
-\noindent Als Alternative für die $\mathbb{P}$-Lösung kann 
+\noindent Alternativ kann auch eine Tabelle verwendet werden. Den Störterm Analysieren und in einer der Form bringen. Dafür wird eine \underline{Testzahl} $\alpha$ und/oder $\beta$ generiert um den Störterm mit einer der folgenden Ausdrücke zu bekommen: Polynom $p$ von $m$ Grades, \textbf{Resonanz} ist $r$-fache Lösung der char. Gleichung:\\
+\begin{tabular}{p{4.5cm} | p{4.5cm}}
+	\multicolumn{2}{c}{\textbf{Störterm} = $e^{\alpha x}p_m(x)$} \\[0.2cm]
+	\toprule
+	$\alpha \notin \lambda$: & $\alpha\in\lambda$:  \\
+	$\mathbb{P} = e^{\alpha x} q_m(x)$ & $\mathbb{P} = e^{\alpha x}x^rq_m(x)$ \\
+	\hline
+	\multicolumn{2}{c}{\textbf{Störterm} = $e^{\alpha x}\left[p_m(x)\cos(\beta x) + q_m(x)\sin(\beta x)\right]$} \\[0.2cm]
+	\toprule
+	$\alpha + j\beta \notin \lambda$: & $\alpha + j\beta \in \lambda$:  \\
+	$\mathbb{P} = e^{\alpha x}[r_m(x)\cos(\beta x) +$ $ s_m(x)\sin(\beta x)]$ & $\mathbb{P} = e^{\alpha x}x^r [r_m(x)$  $\cos(\beta x) + s_m(x)\sin(\beta x)]$ \\
+\end{tabular}\\
 
-\noindent\textbf{Beispiel:} Ordnung=$2: \qquad \Rightarrow g(0) \eqi 0 \quad g'(0) \eqi 1$\\
+\noindent Die DGL Lösung ist \underline{immer} eine Summe von $\mathbb{L} = \mathbb{H} + \mathbb{P}$
 
-\noindent Die DGL Lösung ist immer eine Summe von $\mathbb{L} = \mathbb{H} + \mathbb{P}$
 \subsection{Orthogonaltrajektorien}
-Senkrechte Kurven, welche Originalkurven immer senkrecht schneiden. \\ 
-(1) Ableiten und Parameter eliminieren, DGL als r.h.s notieren (2) Orthogonale Kurven mit Negative Reziprok definieren.\\
+Senkrechte Kurven, welche Originalkurven immer senkrecht schneiden.
+\begin{enumerate}[nosep]
+	\item Ableiten und Parameter eliminieren, DGL als r.h.s notieren 
+	\item Orthogonale Kurven $\tilde{y}$ mit Negative Reziprok definieren.
+\end{enumerate}
+
 \noindent\textbf{Beispiel}:
 \begin{align*}
-	\text{(1) } y &= cx & | \cdot \frac{d}{dx}\quad | c=\cdots\\
+	\text{1. } y &= cx & | \cdot \frac{d}{dx}\quad | c=\cdots\\
 	y' &= c \quad c = \frac{y}{x} \Rightarrow y' = \frac{y}{x}\\
-	\text{(2) } \tilde{y}' &= -\frac{x}{y}
+	\text{2. } \tilde{y}' &= -\frac{x}{y}
 \end{align*}
 
